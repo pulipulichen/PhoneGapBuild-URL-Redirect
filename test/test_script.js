@@ -41,7 +41,7 @@ intent_handler = function (intent) {
                     var _file_url = entry.toURL();
                     alert("download complete: " + entry.toURL());
                     try {
-                         cordova.plugins.fileOpener2.open(
+                         cordova.plugins.fileOpener.open(
                         _file_url, 
                         'application/vnd.android.package-archive'
                     );
