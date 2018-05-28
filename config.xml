@@ -47,7 +47,7 @@ PhoneGap Build Configuration
     
     
     <!-- https://github.com/pwlin/cordova-plugin-file-opener2 -->
-    <plugin spec="https://github.com/pwlin/cordova-plugin-file-opener2.git" source="git" />
+    <plugin name="cordova-plugin-file-opener2" source="npm" />
     
     <platform name="android">
         <config-file target="AndroidManifest.xml" parent="/manifest/application/activity">
