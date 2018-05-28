@@ -29,27 +29,33 @@ intent_handler = function (intent) {
     var fileName = "tmp.apk";
     
     var fileTransfer = new FileTransfer();
-    var fileURL = "cdvfile://localhost/temporary/tmp.apk";
+    var fileURL = "cdvfile://localhost/persistent/tmp.apk";
     var uri = encodeURI(apkUrl);
     
     
-    fileTransfer.download(
-            uri,
-            fileURL,
-            function (entry) {
-                var _file_url = entry.toURL();
-                alert("download complete: " + entry.toURL());
-                try {
-                    cordova.require("cordova-plugin-lightSensor.light").installApk(_file_url);
-                }catch (e) {
-                    alert(e);
-                }
-            },
-            function (error) {
-                alert("download error source " + error.source);
-                alert("download error target " + error.target);
-                alert("download error code" + error.code);
-            },
-            false
-    );
+    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function (fs) {
+        fileTransfer.download(
+                uri,
+                fileURL,
+                function (entry) {
+                    var _file_url = entry.toURL();
+                    alert("download complete: " + entry.toURL());
+                    try {
+                         cordova.plugins.fileOpener2.open(
+                        _file_url, 
+                        'application/vnd.android.package-archive'
+                    );
+                    }catch (e) {
+                        alert(e);
+                    }
+                },
+                function (error) {
+                    alert("download error source " + error.source);
+                    alert("download error target " + error.target);
+                    alert("download error code" + error.code);
+                },
+                false
+        );
+    });
+        
 };
