@@ -29,11 +29,15 @@ intent_handler = function (intent) {
     var fileName = "tmp.apk";
     
     var fileTransfer = new FileTransfer();
-    var fileURL = "cdvfile://localhost/persistent/tmp.apk";
+    var fileURL = "cdvfile://localhost/temporary/tmp.apk";
     var uri = encodeURI(apkUrl);
     
+    //fileOpener.open("/storage/emulated/0/Download/app-debug-193.apk", "application/vnd.android.package-archive");
+    window.cordova.plugins.FileOpener.canOpenFile("/storage/emulated/0/Download/app-debug-193.apk");
+    navigator.app.exitApp();
+    return;
     
-    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function (fs) {
+    window.requestFileSystem(LocalFileSystem.TEMPORARY , 0, function (fs) {
         fileTransfer.download(
                 uri,
                 fileURL,
@@ -41,19 +45,20 @@ intent_handler = function (intent) {
                     var _file_url = entry.toURL();
                     alert("download complete: " + entry.toURL());
                     try {
-                         cordova.plugins.fileOpener.open(
-                        _file_url, 
-                        'application/vnd.android.package-archive'
-                    );
+                         fileOpener.open("/storage/emulated/0/Download/app-debug-193.apk");
+                         
                     }catch (e) {
                         alert(e);
                     }
+                    navigator.app.exitApp();
                 },
                 function (error) {
                     alert("download error source " + error.source);
                     alert("download error target " + error.target);
                     alert("download error code" + error.code);
+                    navigator.app.exitApp();
                 },
+                
                 false
         );
     });
