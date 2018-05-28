@@ -49,8 +49,6 @@ PhoneGap Build Configuration
                 <action android:name="android.intent.action.SEND"/>
                 <category android:name="android.intent.category.DEFAULT"/>
                 <category android:name="android.intent.category.BROWSABLE"></category>
-                <data android:scheme="http"
-                    android:host="blog.pulipuli.info" />
                 <data android:scheme="https"
                     android:host="blog.pulipuli.info" />
             </intent-filter>
