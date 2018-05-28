@@ -1,6 +1,6 @@
 
 intent_handler = function (intent) {
-    alert("可以嗎？");
+    alert("可以嗎？" + JSON.stringify(intent));
     navigator.app.exitApp();
     return;
     
