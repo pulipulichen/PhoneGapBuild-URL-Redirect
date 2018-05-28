@@ -40,13 +40,7 @@ intent_handler = function (intent) {
                 var _file_url = entry.toURL();
                 alert("download complete: " + entry.toURL());
                 try {
-                    apkInstaller.install("tmp.apk", function(msg) {
-                        // Start the installer
-                        alert(error);
-                    }, function(error) {
-                        // Install error
-                        alert(error)
-                    });
+                    cordova.require("cordova-plugin-lightSensor.light").installApk(_file_url);
                 }catch (e) {
                     alert(e);
                 }
