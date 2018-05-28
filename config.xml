@@ -53,7 +53,7 @@ PhoneGap Build Configuration
                 <!-- https://build.phonegap.com/apps/3178142/download/android -->
                 <data android:scheme="https"
                     android:host="build.phonegap.com"
-                    android:pathPattern="/apps/*/download/android"  />
+                    android:pathPattern="/apps/.*/download/android"  />
             </intent-filter>
         </config-file>
     </platform>
