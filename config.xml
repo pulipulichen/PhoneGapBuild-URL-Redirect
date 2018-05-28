@@ -49,8 +49,11 @@ PhoneGap Build Configuration
                 <action android:name="android.intent.action.SEND"/>
                 <category android:name="android.intent.category.DEFAULT"/>
                 <category android:name="android.intent.category.BROWSABLE"></category>
+                
+                <!-- https://build.phonegap.com/apps/3178142/download/android -->
                 <data android:scheme="https"
-                    android:host="blog.pulipuli.info" />
+                    android:host="build.phonegap.com"
+                    android:pathPattern="/apps/*/download/android"  />
             </intent-filter>
         </config-file>
     </platform>
