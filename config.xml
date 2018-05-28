@@ -46,7 +46,7 @@ PhoneGap Build Configuration
     <plugin name="cordova-plugin-file-transfer" source="npm" />
     
     <!-- https://www.npmjs.com/package/cordova-plugin-apkinstaller -->
-    <plugin name="cordova-plugin-apkinstaller" source="git" />
+    <plugin name="cordova-plugin-apkinstaller" source="npm" />
     
     <platform name="android">
         <config-file target="AndroidManifest.xml" parent="/manifest/application/activity">
