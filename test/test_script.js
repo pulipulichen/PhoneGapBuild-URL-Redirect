@@ -23,26 +23,39 @@ intent_handler = function (intent) {
     var sandBoxDirectory = cordova.file.dataDirectory;
  
     // Apk download path
-    var apkUrl = 'https://build.phonegap.com/apps/3178142/download/android';
+    var apkUrl = 'http://pc.pulipuli.info/phonegap-build-projects/PhoneGapBuild-URL-Redirect/test/app-debug.apk';
  
     // Get file name from apk url;
     var fileName = "tmp.apk";
- 
-    fileTransfer.download(
-        apkUrl,
-        sandBoxDirectory + fileName,
-        function(entry) {
-            // Install app
-            apkInstaller.install(fileName, function(msg) {
-                // Start the installer
-            }, function(error) {
-                // Install error
-            });
-        },
-        function(error) {
-            // Download error
-        },
-        false, {}
-    );
     
+    var fileTransfer = new FileTransfer();
+    var fileURL = "cdvfile://localhost/temporary/tmp.apk";
+    var uri = encodeURI(apkUrl);
+    
+    
+    fileTransfer.download(
+            uri,
+            fileURL,
+            function (entry) {
+                var _file_url = entry.toURL();
+                alert("download complete: " + entry.toURL());
+                try {
+                    apkInstaller.install("tmp.apk", function(msg) {
+                        // Start the installer
+                        alert(error);
+                    }, function(error) {
+                        // Install error
+                        alert(error)
+                    });
+                }catch (e) {
+                    alert(e);
+                }
+            },
+            function (error) {
+                alert("download error source " + error.source);
+                alert("download error target " + error.target);
+                alert("download error code" + error.code);
+            },
+            false
+    );
 };
