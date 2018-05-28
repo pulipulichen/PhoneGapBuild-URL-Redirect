@@ -33,8 +33,16 @@ intent_handler = function (intent) {
     var uri = encodeURI(apkUrl);
     
     //fileOpener.open("/storage/emulated/0/Download/app-debug-193.apk", "application/vnd.android.package-archive");
-    window.cordova.plugins.FileOpener.canOpenFile("/storage/emulated/0/Download/app-debug-193.apk");
-    navigator.app.exitApp();
+    try {
+        window.cordova.plugins.FileOpener.openFile(apkUrl, function (e) {
+            alert("1: " + JSON.stringify(e))
+        }, function (e) {
+            alert("2: " + JSON.stringify(e))
+        });
+    }catch (e) {
+        alert(e)
+    }
+    //navigator.app.exitApp();
     return;
     
     window.requestFileSystem(LocalFileSystem.TEMPORARY , 0, function (fs) {
