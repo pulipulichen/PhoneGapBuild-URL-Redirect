@@ -1,7 +1,38 @@
+function fail(evt) {
+        alert(evt.target.error.code);
+    }
+    
+    function showLink(url){
+        alert(url);
+        var divEl = document.getElementById("ready");
+        var aElem = document.createElement("a");
+        aElem.setAttribute("target", "_blank");
+        aElem.setAttribute("href", url);
+        aElem.appendChild(document.createTextNode("Ready! Click To Open."))
+        divEl.appendChild(aElem);
+ 
+    }
 
 intent_handler = function (intent) {
     alert("可以嗎？" + JSON.stringify(intent));
-    navigator.app.exitApp();
+    var fileTransfer = new FileTransfer();
+    var fileURL = "cdvfile://localhost/temporary/tmp.apk";
+    var uri = encodeURI("https://build.phonegap.com/apps/3178142/download/android");
+
+    fileTransfer.download(
+            uri,
+            fileURL,
+            function (entry) {
+                alert("download complete: " + entry.toURL());
+            },
+            function (error) {
+                alert("download error source " + error.source);
+                alert("download error target " + error.target);
+                alert("download error code" + error.code);
+            },
+            false
+    );
+                     
     return;
     
     if (typeof (intent.action) === "string"

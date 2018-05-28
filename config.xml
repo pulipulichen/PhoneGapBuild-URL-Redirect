@@ -42,6 +42,9 @@ PhoneGap Build Configuration
     <!-- https://github.com/napolitano/cordova-plugin-intent -->
     <plugin spec="https://github.com/napolitano/cordova-plugin-intent.git" source="git" />
     
+    <!-- https://www.npmjs.com/package/cordova-plugin-file-transfer -->
+    <plugin name="cordova-plugin-file-transfer" source="npm" />
+    
     <platform name="android">
         <config-file target="AndroidManifest.xml" parent="/manifest/application/activity">
             <intent-filter>
